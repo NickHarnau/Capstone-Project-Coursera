@@ -1,3 +1,5 @@
-"Heĺlo GitHub"
-"Hier ist Nick"
+import pandas as pd
+import numpy as np
+
+print("Hello Capstone Project Course")
 
