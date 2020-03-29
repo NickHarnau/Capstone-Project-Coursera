@@ -7,7 +7,11 @@ import matplotlib.cm as cm
 import matplotlib.colors as colors
 from geopy.geocoders import Nominatim
 import folium
+
+##
 # PART 1 - Getting the data from Wikipedia with BS4
+##
+
 
 link = "https://en.wikipedia.org/wiki/List_of_postal_codes_of_Canada:_M"
 
@@ -46,14 +50,21 @@ Canada_district_df = pd.DataFrame({"Postal Code":Postal_Codes, "Borough": Boroug
 Canada_district_df['Neighborhood'] = Canada_district_df['Neighborhood'].str.replace(r" / ", " , " ) # replace / by , as seperator between neigbourhoods
 Canada_district_df.shape # result= (102, 3)
 
+##
 # PART 2 - Get the location Data to the df
+##
+
 
 # geo date in the link
 geo_data = pd.read_csv("http://cocl.us/Geospatial_data")
 # merge the two dfs
 Merged_df = Canada_district_df.merge(geo_data, on='Postal Code', how='left')
 
+
+##
 # Part 3 - Cluster the Neighborhoud of Toronto and explore it with folium
+##
+
 
 # get only Boroughs in Toronto:
 Toronto_df = Merged_df.loc[Merged_df["Borough"].str.contains("Toronto")]
